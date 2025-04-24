@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Account | Bookies & Co</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #f9f9f9, #f1f1f1);
+      color: #222;
+    }
+
+    .account-container {
+      max-width: 700px;
+      margin: 80px auto;
+      padding: 40px;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .account-container h1 {
+      font-size: 2rem;
+      margin-bottom: 25px;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 10px;
+    }
+
+    .account-container p {
+      font-size: 1.1rem;
+      margin: 10px 0;
+    }
+
+    .account-container section {
+      margin-top: 30px;
+    }
+
+    .account-container section h2 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+    }
+
+    .account-container ul {
+      list-style-type: disc;
+      padding-left: 20px;
+    }
+  </style>
+</head>
+<body>
+    <button onclick="window.location.href='index.html'" class="back-home-btn">← Home</button>
+
+  <div class="account-container">
+    <h1>My Account</h1>
+    <div id="account-info"></div>
+
+    <section>
+      <h2>Wishlist</h2>
+      <p>Your wishlist is currently empty.</p>
+    </section>
+
+    <section>
+      <h2>Past Purchases</h2>
+      <p>You haven’t made any purchases yet.</p>
+    </section>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const isLoggedIn = localStorage.getItem("isLoggedIn");
+      const user = JSON.parse(localStorage.getItem("user"));
+      const info = document.getElementById("account-info");
+
+      if (isLoggedIn === "true" && user) {
+        info.innerHTML = `
+          <p><strong>Username:</strong> ${user.username}</p>
+          <p><strong>Email:</strong> ${user.email}</p>
+        `;
+      } else {
+        window.location.href = "login.html";
+      }
+    });
+  </script>
+</body>
+</html>
